@@ -4,11 +4,12 @@ var db = require('../database');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'default router' });
 });
 
-router.get('/Home', function(req, res, next) {
-  res.render('index', { title: 'Test' });
+router.get('/home', function(req, res, next) {
+  res.render('index', { title: 'home router' });
 });
+
 
 module.exports = router;

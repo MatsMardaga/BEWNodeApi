@@ -1,2 +1,4 @@
-1) base project https://canvas.ehb.be/courses/30473/pages/nodejs-intro-oefeningen?module_item_id=421312
-2) creating a database poolhttps://www.youtube.com/watch?v=YNN3nSrT-lc&t=4s
+1) base project -> https://canvas.ehb.be/courses/30473/pages/nodejs-intro-oefeningen?module_item_id=421312
+2) creating a database -> poolhttps://www.youtube.com/watch?v=YNN3nSrT-lc&t=4s
+3) inserting multiple rows in database -> https://canvas.ehb.be/courses/30473/pages/nodejs-basic-api-oefeningen?module_item_id=421314
+4) req.query instead of req.boy -> https://dev.to/gathoni/express-req-params-req-query-and-req-body-4lpc

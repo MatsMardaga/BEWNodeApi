@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../database');
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', function(res) {
   res.render('index', { title: 'default router' });
 });
 

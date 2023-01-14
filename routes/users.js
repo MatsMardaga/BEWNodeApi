@@ -37,6 +37,23 @@ router.post('/createuser', (req, res) => {
       }); 
     }
   });
+});
+
+router.put('/updateuser', (req, res) => {
+  db.getConnection((err, connection) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      var sql = 'UPDATE user SET (name,email,password) VALUES (?, ?, ?) WHERE (id=?)';
+      var values = [req.query.name, req.query.email, req.query.password, req.query.id];
+      connection.query(sql, values, (err, result) => {
+        if (err) console.log(err);
+        res.send('created a new user');
+        connection.release();
+      }); 
+    }
+  });
 
 });
 

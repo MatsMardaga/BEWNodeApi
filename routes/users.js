@@ -28,6 +28,7 @@ router.post('/createuser', (req, res) => {
       console.log(err);
     }
     else {
+      //prepared statement
       var sql = 'INSERT INTO user(name,email,password) VALUES (?, ?, ?)';
       var values = [req.query.name, req.query.email, req.query.password];
       connection.query(sql, values, (err, result) => {
@@ -45,22 +46,27 @@ router.put('/updateuser', (req, res) => {
       console.log(err);
     }
     else {
+      //prepared statement
       var sql = 'UPDATE user SET name = ?, email = ?, password = ? WHERE id = ?';
       var values = [req.query.name, req.query.email, req.query.password, req.query.id];
       connection.query(sql, values, (err, result) => {
         if (err) console.log(err);
+        //check if user id exists
         if(result.affectedRows == 0){
           console.log('There is no user with that id')
         }
+        //check if there is anything to change
+        else if(result.changedRows == 0){
+          console.log('Nothing to update')
+        }
+        //if user id exists, the database entry is updated
         else{
           res.send('user has been updated');
           connection.release();
         }
-       
       }); 
     }
   });
-
 });
 
 

@@ -45,21 +45,17 @@ router.put('/updateuser', (req, res) => {
       console.log(err);
     }
     else {
-      var sql = 'UPDATE user SET (name,email,password) VALUES (?, ?, ?) WHERE (id=?)';
+      var sql = 'UPDATE user SET name = ?, email = ?, password = ? WHERE id = ?';
       var values = [req.query.name, req.query.email, req.query.password, req.query.id];
       connection.query(sql, values, (err, result) => {
         if (err) console.log(err);
-        res.send('created a new user');
+        res.send('user has been updated');
         connection.release();
       }); 
     }
   });
 
 });
-
-
-
-
 
 
 module.exports = router;

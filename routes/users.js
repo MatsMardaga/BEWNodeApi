@@ -49,7 +49,7 @@ router.put('/updateuser', (req, res) => {
       var values = [req.query.name, req.query.email, req.query.password, req.query.id];
       connection.query(sql, values, (err, result) => {
         if (err) console.log(err);
-        if(result.affectedrows == 0){
+        if(result.affectedRows == 0){
           console.log('There is no user with that id')
         }
         else{

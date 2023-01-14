@@ -3,11 +3,11 @@ var router = express.Router();
 var db = require('../database');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', { title: 'default router' });
 });
 
-router.get('/home', function(req, res, next) {
+router.get('/home', function(req, res) {
   res.render('index', { title: 'home router' });
 });
 

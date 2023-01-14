@@ -5,12 +5,8 @@ var router = express.Router();
 const db = require('../database');
 
 /* GET users listing. */
-router.get('/shownews', function(req, res, next) {
-    res.render('index', { title: 'news router' });
-    connection.query('SELECT * FROM news', function(err, result){
-        res.send(result);
-    });
-    connection.release;
+router.get('/shownews', function(req, res) {
+    res.render('index', { title: 'news router', message: 'test' });
   });
 
 module.exports = router;

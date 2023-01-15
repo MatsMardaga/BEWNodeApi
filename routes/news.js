@@ -55,6 +55,9 @@ router.post('/createnews', (req, res) => {
 });
 
 
+// -------------------------------------------------------Update new newspost-------------------------------------------------------
+
+
 //Need to put a variable in the route before the ? -> example localhost:3000/news/updatenews/5?user_id=7
 router.put('/updatenews/:id', (req, res) => {
   db.getConnection((err, connection) => {
@@ -68,10 +71,17 @@ router.put('/updatenews/:id', (req, res) => {
         if (err){
           console.log(err)
         }
+
+        //for some reason if either a newspost doesnt exist or a user id is not in newspost
+        //console will always say 'post id not found'
+
+
         //user id not in post
         if(result.length == 0){
           console.log('post id not found')
         }
+        //if the first value of the result (user_id) doesn't equa; the user_id in the query string
+        //the user cannot edit it 
         else if(result[0].user_id != req.query.user_id){
           console.log('not authorized to update newspost')
         }
@@ -99,5 +109,41 @@ router.put('/updatenews/:id', (req, res) => {
 });
 
 
+// -------------------------------------------------------Delete new newspost-------------------------------------------------------
+
+//Need to put a variable in the route before the ? -> example localhost:3000/news/updatenews/5?user_id=7
+router.put('/updatenews/:id', (req, res) => {
+  db.getConnection((err, connection) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      //Check to see if user id is stored in certain post
+      var sqlcheck = 'SELECT user_id FROM news WHERE id = ? and user_id = ?';
+      connection.query(sqlcheck, [req.params.id, req.query.user_id], (err,result)=>{
+        if (err){
+          console.log(err)
+        }
+
+        //for some reason if either a newspost doesnt exist or a user id is not in newspost
+        //console will always say 'post id not found'
+
+
+        //user id not in post
+        if(result.length == 0){
+          console.log('post id not found')
+        }
+        //if the first value of the result (user_id) doesn't equa; the user_id in the query string
+        //the user cannot edit it 
+        else if(result[0].user_id != req.query.user_id){
+          console.log('not authorized to update newspost')
+        }
+        else{
+          console.log('news item exists and user authorized to delete it, deleting post now...')
+        }
+      })
+    }
+  });
+});
 
 module.exports = router;

@@ -54,6 +54,8 @@ router.post('/createnews', (req, res) => {
   });
 });
 
+
+//Need to put a variable in the route before the ? -> example localhost:3000/news/updatenews/5?user_id=7
 router.put('/updatenews/:id', (req, res) => {
   db.getConnection((err, connection) => {
     if (err) {
@@ -75,6 +77,19 @@ router.put('/updatenews/:id', (req, res) => {
         }
         else{
           console.log('news item exists and user authorized to edit it, editing post now...')
+          var sql = 'UPDATE news SET title = ?, content = ? WHERE id = ?';
+          var values = [req.query.title, req.query.content, req.params.id];
+          connection.query(sql, values, (err, result)=>{
+            if(err)console.log(err)
+            if (result.changedRows == 0) {
+              console.log('Nothing to update')
+            }
+            else{
+              res.send('News post edited sucessfully')
+              connection.release();
+            }
+            
+          })
           
         }
       })

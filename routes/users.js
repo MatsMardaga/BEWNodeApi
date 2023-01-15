@@ -11,7 +11,8 @@ router.get('/showusers', (req, res) => {
       console.log(err);
     }
     else {
-      var sql = 'SELECT * FROM user';
+      // LIMIT 20 will print out the first 20 users 9LIMIT20) starting at the 6th row of the users table (OFFSET 5)
+      var sql = 'SELECT * FROM user LIMIT 20 OFFSET 5';
       connection.query(sql, (err, result) => {
         if (err) console.log(err);
         res.send(result);

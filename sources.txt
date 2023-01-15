@@ -3,3 +3,4 @@
 3) inserting multiple rows in database -> https://canvas.ehb.be/courses/30473/pages/nodejs-basic-api-oefeningen?module_item_id=421314
 4) req.query instead of req.boy -> https://dev.to/gathoni/express-req-params-req-query-and-req-body-4lpc
 5) result.affectedRows -> https://www.tutorialkart.com/nodejs/nodejs-mysql-result-object/
+6) returning values with a limit and offset -> https://www.geeksforgeeks.org/node-js-mysql-limit-clause/

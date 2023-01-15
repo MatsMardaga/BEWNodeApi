@@ -54,21 +54,21 @@ router.post('/createnews', (req, res) => {
   });
 });
 
-router.put('/updatenews', (req, res) => {
+router.put('/updatenews/:id', (req, res) => {
   db.getConnection((err, connection) => {
     if (err) {
       console.log(err);
     }
     else {
       //Check to see if user id is stored in certain post
-      var sqlcheck = 'SELECT user_id FROM news WHERE user_id = ?'
-      connection.query(sqlcheck, [req.query.id], (err,result)=>{
+      var sqlcheck = 'SELECT user_id FROM news WHERE id = ? and user_id = ?';
+      connection.query(sqlcheck, [req.params.id, req.query.user_id], (err,result)=>{
         if (err){
           console.log(err)
         }
         //user id not in post
         if(result.length == 0){
-          console.log('news id does not exist')
+          console.log('post id not found')
         }
         else if(result[0].user_id != req.query.user_id){
           console.log('not authorized to update newspost')
